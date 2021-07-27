@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const GameList = (props) => {
   const gameList = props.gameList;
@@ -10,7 +10,7 @@ const GameList = (props) => {
     <div id="gameList">
       <h3>Past matches</h3>
       <ul>
-        {listElements}
+        {/* {listElements} */}
       </ul>
     </div>
   );

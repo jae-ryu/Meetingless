@@ -8,11 +8,12 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, './build')
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './client/index.html'
-    })
-  ],
+  // plugins: [
+  //   // new HtmlWebpackPlugin({
+  //   //   template: './client/index.html'
+  //   // })
+  //   new HtmlWebpackPlugin()
+  // ],
   devServer: {
     publicPath: '/build/',
     // proxy: {
