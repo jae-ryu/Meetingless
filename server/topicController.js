@@ -16,6 +16,7 @@ topicController.createTopic = (req, res, next) => {
     .save()
     .then((result) => {
       res.locals.topic = result;
+      console.log('successfully posted');
       return next();
     })
     .catch((err) => {
