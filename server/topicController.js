@@ -4,8 +4,9 @@ const TopicModel = require('./topicModel');
 const topicController = {};
 
 topicController.createTopic = (req, res, next) => {
-  const topic = req.body;
+  const topic = req.body.topic;
   console.log('got into createTopic middleware with req.body = ' + topic);
+  console.log(req.body);
 
   const newTopic = new TopicModel({
     topic : topic,
