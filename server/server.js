@@ -47,20 +47,20 @@ const TopicSchema = new Schema({
 const TopicPost = mongoose.model('TopicPost', TopicSchema);
 
 // test data to save
-const data = {
-  topic: 'First test',
-  body: 'Test test',
-};
+// const data = {
+//   topic: 'First test',
+//   body: 'Test test',
+// };
 
-// .save();
-const newTopicPost = new TopicPost(data);
-newTopicPost.save((err) => {
-  if (err) {
-    console.log('Oops error');
-  } else {
-    console.log('Data has been saved!!');
-  }
-});
+// // .save();
+// const newTopicPost = new TopicPost(data);
+// newTopicPost.save((err) => {
+//   if (err) {
+//     console.log('Oops error');
+//   } else {
+//     console.log('Data has been saved!!');
+//   }
+// });
 
 // statically serve everything in the build folder on the route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
