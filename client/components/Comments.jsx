@@ -13,8 +13,8 @@ class Comments extends Component {
           <h2>Comments</h2>
         </div>
         <div id="topicInput">
-          <form method="POST" action='/login' >
-              <input name="username" type="text" placeholder="name" ></input>
+          <form method="POST" action='/topic' onSubmit={this.props.submitTopic}>
+              <input name="username" type="text" placeholder="name" onChange={this.props.uponChange}></input>
               <input type='submit' value="submit"></input>
           </form>
         </div>
