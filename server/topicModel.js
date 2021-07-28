@@ -17,6 +17,7 @@ mongoose.connection.on('connected', () => {
 // Schema
 const Schema = mongoose.Schema;
 const TopicSchema = new Schema({
+  num: Number,
   topic: String,
   message: {
     name : String,

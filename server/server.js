@@ -74,9 +74,8 @@ app.get('/', (req, res) => {
 
 // creating a new topic
 app.post('/topic', topicController.createTopic, (req, res) => {
-  console.log('successfully posted');
   console.log(res.locals.topic);
-  return res.status(200)
+  res.status(200).sendFile(path.join(__dirname, '../index.html'));
 })
 
 // app.listen(PORT); //listens on port 3000 -> http://localhost:3000/
