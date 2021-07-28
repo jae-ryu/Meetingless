@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const PORT = 3000;
 const app = express();
 
+const topicController = require('./topicController')
+
 const mongoURI = 'mongodb+srv://jaeryu:asdzxc90@cluster0.hgz8q.mongodb.net/meetingless?retryWrites=true&w=majority';
 // const mongoURI = 'mongodb://localhost/meetingless';
 
@@ -18,33 +20,34 @@ const mongoURI = 'mongodb+srv://jaeryu:asdzxc90@cluster0.hgz8q.mongodb.net/meeti
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => {
-  console.log('MongoDB Connected…')
-})
-.catch(err => console.log(err))
+// mongoose.connect(mongoURI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// })
+// .then(() => {
+//   console.log('MongoDB Connected…')
+// })
+// .catch(err => console.log(err))
 
-mongoose.connection.on('connected', () => {
-  console.log('Mongoose is connected!!!!');
-})
+// mongoose.connection.on('connected', () => {
+//   console.log('Mongoose is connected!!!!');
+// })
 
-// Schema
-const Schema = mongoose.Schema;
-const TopicSchema = new Schema({
-  topic: String,
-  body: String,
-  message: {
-    name : String,
-    comment : String,
-  }
-});
+// // Schema
+// const Schema = mongoose.Schema;
+// const TopicSchema = new Schema({
+//   num: Number,
+//   topic: String,
+//   message: {
+//     name : String,
+//     comment : String,
+//   }
+// });
 
-// Model
-const TopicPost = mongoose.model('TopicPost', TopicSchema);
+// // Model
+// const TopicPost = mongoose.model('TopicPost', TopicSchema);
 
 // test data to save
 // const data = {
@@ -68,6 +71,13 @@ app.use('/build', express.static(path.join(__dirname, '../build')));
 app.get('/', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
+
+// creating a new topic
+app.post('/topic', topicController.createTopic, (req, res) => {
+  console.log('successfully posted');
+  console.log(res.locals.topic);
+  return res.status(200)
+})
 
 // app.listen(PORT); //listens on port 3000 -> http://localhost:3000/
 app.use((err, req, res, next) => {
