@@ -16,16 +16,16 @@ module.exports = {
   // ],
   devServer: {
     publicPath: '/build/',
-    // proxy: {
-      // '/api/**': {
-      //   target: 'http://localhost:3000/',
-      //   secure: false,
-      // },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000/',
+        secure: false,
+      }
       // '/assets/**': {
       //   target: 'http://localhost:3000/',
       //   secure: false,
       // },
-    // },
+    },
   },
   mode: process.env.NODE_ENV,
   module: {
