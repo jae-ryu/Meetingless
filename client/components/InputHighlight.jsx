@@ -9,8 +9,10 @@ class InputHighlight extends Component {
   render () {
     return (
       <div className="inputHighlight">
-        <h5>{this.props.name}</h5>
-        <h5>Upvote : {this.props.upvote}</h5>
+        <span>
+          <h5>{this.props.name}</h5>
+          <h5>Upvote : {this.props.upvote}</h5>
+        </span>
         <h3>{this.props.text}</h3>
       </div>
     )

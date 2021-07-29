@@ -8,80 +8,62 @@ import InputHighlight from './InputHighlight.jsx';
 class Comments extends Component {
   constructor() {
     super();
-    this.state = {
-      topics: [],
-      messages1: [],
-    };
+    // this.state = {
+    //   topics: [],
+    //   messages1: [],
+    // };
   }
 
-  componentDidMount() {
+  // componentDidMount() {
 
-    fetch('/getTopics')
-      .then(res => res.json())
-      .then(result => {
-        console.log('made it to fetch gettopics');
-        console.log('----------topics result------');
-        console.log(result);
-        this.setState({ topics : result });
+  //   fetch('/getTopics')
+  //     .then(res => res.json())
+  //     .then(result => {
+  //       console.log('made it to fetch gettopics');
+  //       console.log('----------topics result------');
+  //       console.log(result);
+  //       this.setState({ topics : result });
 
-        // sort logic
-        const unsorted = result[0].message;
-        const sorted = unsorted.sort((a,b) => b.upvote - a.upvote);
+  //       // sort logic
+  //       const unsorted = result[0].message;
+  //       const sorted = unsorted.sort((a,b) => b.upvote - a.upvote);
 
-        this.setState({ messages1 : sorted })
-        // this.setState({ messages1 : result[0].message })
+  //       this.setState({ messages1 : sorted })
+  //       // this.setState({ messages1 : result[0].message })
 
-      })
-      .catch(err => console.log('fetch getTopics error'))
- 
-    // fetch('/getMessages')
-    //   .then(res => res.json())
-    //   .then(messages => {
-    //     console.log('in fetch getMessage');
-    //     console.log('----------messages result------');
-    //     console.log(messages);
-    //     this.setState({ messages : messages });
-    //   })
-    //   .catch(err => console.log('fetch getMessage error'))
-
-    // Promise.all([fetch('/getTopics'), fetch('/getMessages')]) 
-    //   .then(([res1, res2]) => {
-    //     return Promise.all([res1.json(), res2.json()])
-    //   })
-    //   .then(([res1, res2]) => {
-    //     this.setState({ topics: res1 })
-    //     this.setState({ messages: res2 }) 
-    //   })
-    //   .catch(([err1, err2]) => console.log(err1 + ' ' + err2))
-  }
+  //     })
+  //     .catch(err => console.log('fetch getTopics error'))
+  // }
 
   render () {
     
     console.log('-----latest state topics below-----');
-    console.log(this.state.topics);
+    console.log(this.props.topics);
     console.log('-----latest state messages below-----');
-    console.log(this.state.messages1);
+    console.log(this.props.messages1);
 
-    const {topics} = this.state;
+    const topics = this.props.topics;
 
-    const topic1 = topics.map((el) => {
+    const topic1 = topics.map((el, i) => {
       return (
         <TopicHighlight
-          text={el.topic} 
+          text={el.topic}
+          key={i}
         />
       );
     })
 
-    const {messages1} = this.state;
+    const messages1 = this.props.messages1;
 
 // sort the arrays, pass in a compare function
 
-    const firstMessages = messages1.map((el) => {
+    const firstMessages = messages1.map((el, i) => {
       return (
         <InputHighlight
           text={el.comment}
           name={el.name}
           upvote={el.upvote}
+          key={i}
         />
       )
     })
