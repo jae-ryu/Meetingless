@@ -23,7 +23,14 @@ class Comments extends Component {
         console.log('----------topics result------');
         console.log(result);
         this.setState({ topics : result });
-        this.setState({ messages1 : result[0].message })
+
+        // sort logic
+        const unsorted = result[0].message;
+        const sorted = unsorted.sort((a,b) => b.upvote - a.upvote);
+
+        this.setState({ messages1 : sorted })
+        // this.setState({ messages1 : result[0].message })
+
       })
       .catch(err => console.log('fetch getTopics error'))
  
@@ -65,18 +72,9 @@ class Comments extends Component {
       );
     })
 
-    // topics = [ {num, topic, message}]
+    const {messages1} = this.state;
 
-    // const topic1Messages = [];
-    // for (let i = 0; i < topics.length; i++) {
-    //   if (topics[i].num === 1) {
-    //     topic1Messages = topics[i].message;
-    //   }
-    // }
-
-    // topic1Messages = [{upvote, name, comment}, {}]
-
-    const {messages1} = this.state;;
+// sort the arrays, pass in a compare function
 
     const firstMessages = messages1.map((el) => {
       return (
