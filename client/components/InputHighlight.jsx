@@ -10,6 +10,7 @@ class InputHighlight extends Component {
     return (
       <div className="inputHighlight">
         <h5>{this.props.name}</h5>
+        <h5>Upvote : {this.props.upvote}</h5>
         <h3>{this.props.text}</h3>
       </div>
     )

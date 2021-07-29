@@ -10,13 +10,12 @@ class Comments extends Component {
     super();
     this.state = {
       topics: [],
-      messages: [],
+      messages1: [],
     };
   }
 
   componentDidMount() {
-    // run getTopics route, to populate this.state.topics array
-    // add it to server and controller
+
     fetch('/getTopics')
       .then(res => res.json())
       .then(result => {
@@ -24,24 +23,29 @@ class Comments extends Component {
         console.log('----------topics result------');
         console.log(result);
         this.setState({ topics : result });
+        this.setState({ messages1 : result[0].message })
       })
       .catch(err => console.log('fetch getTopics error'))
-      
+ 
+    // fetch('/getMessages')
+    //   .then(res => res.json())
+    //   .then(messages => {
+    //     console.log('in fetch getMessage');
+    //     console.log('----------messages result------');
+    //     console.log(messages);
+    //     this.setState({ messages : messages });
+    //   })
+    //   .catch(err => console.log('fetch getMessage error'))
 
-    fetch('/getMessages')
-      .then(res => res.json())
-      .then(result => {
-        console.log('in fetch getMessage');
-        console.log('----------messages result------');
-        console.log(result);
-        // console.log(topics);
-        this.setState({ messages : result });
-      })
-      .catch(err => console.log('fetch getMessage error'))
-
-
-    // run getInputs route, to populate this.state.inputs array
-    // add it to server and controller
+    // Promise.all([fetch('/getTopics'), fetch('/getMessages')]) 
+    //   .then(([res1, res2]) => {
+    //     return Promise.all([res1.json(), res2.json()])
+    //   })
+    //   .then(([res1, res2]) => {
+    //     this.setState({ topics: res1 })
+    //     this.setState({ messages: res2 }) 
+    //   })
+    //   .catch(([err1, err2]) => console.log(err1 + ' ' + err2))
   }
 
   render () {
@@ -49,7 +53,7 @@ class Comments extends Component {
     console.log('-----latest state topics below-----');
     console.log(this.state.topics);
     console.log('-----latest state messages below-----');
-    console.log(this.state.messages);
+    console.log(this.state.messages1);
 
     const {topics} = this.state;
 
@@ -72,16 +76,17 @@ class Comments extends Component {
 
     // topic1Messages = [{upvote, name, comment}, {}]
 
-    // const {message} = topics;
+    const {messages1} = this.state;;
 
-    // const messages = topic1Messages.map((el) => {
-    //   return (
-    //     <InputHighlight
-    //       text={el.comment}
-    //       name={el.name}
-    //     />
-    //   )
-    // })
+    const firstMessages = messages1.map((el) => {
+      return (
+        <InputHighlight
+          text={el.comment}
+          name={el.name}
+          upvote={el.upvote}
+        />
+      )
+    })
 
 
     return (
@@ -99,7 +104,7 @@ class Comments extends Component {
           {topic1}
         </div>
         <div id="res">
-          {/* {messages} */}
+          {firstMessages}
         </div>
         <div id="resInput">
           <form method="POST" action='/input' onSubmit={this.props.submitTopic}>
