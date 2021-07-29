@@ -1,3 +1,13 @@
+// General
+.comments, input[type=text] {
+  width: 300px;
+}
+
+input[id=nameInput], input[id=verInput] {
+  width: 80px;
+}
+
+// Main App
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -8,13 +18,14 @@
     "digests comments"
     "digests comments"
     "digests comments";
-  height: 100vh;
+  height: 90vh;
 }
 
 #name {
   grid-area: name;
   background-color: lightgray;
   text-align: center;
+  margin: 2px;
   // display: 
 }
 
@@ -39,5 +50,49 @@
 #comments {
   grid-area: comments;
   background-color: turquoise;
+  margin: 2px;
+}
+
+// Comments section
+
+.commentSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 75px 1fr 3fr 0.5fr;
+  grid-template-areas: 
+    "circles circles circles circles circles circles"
+    "label topic topic topic topic topic"
+    "label res res res res res"
+    "label input input input input input";
+    // "label res res res res res"
+    // "label input input input input input";
+  height: 100%;
+  width: auto;
+}
+
+#circles {
+  grid-area: circles;
+  background-color: lightcyan;
+  margin: 2px;
+}
+
+#topicInput {
+  grid-area: topic;
+  background-color: lightcyan;
+  margin: 2px;
+}
+
+#res {
+  grid-area: res;
+  margin: 2px;
+}
+
+#resInput {
+  grid-area: input;
+  margin: 2px;
+}
+
+#label {
+  grid-area: label;
   margin: 2px;
 }

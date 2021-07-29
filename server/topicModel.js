@@ -19,10 +19,11 @@ const Schema = mongoose.Schema;
 const TopicSchema = new Schema({
   num: Number,
   topic: String,
-  message: {
+  message: [{
+    upvote : Number,
     name : String,
-    comment : String,
-  }
+    comment : String
+  }]
 });
 
 module.exports = mongoose.model('TopicModel', TopicSchema);

@@ -78,6 +78,11 @@ app.post('/topic', topicController.createTopic, (req, res) => {
   res.status(200).sendFile(path.join(__dirname, '../index.html'));
 })
 
+app.post('/input', topicController.addInput, (req, res) => {
+  console.log('completed add Input middleware');
+  res.status(200).sendFile(path.join(__dirname, '../index.html'));
+})
+
 // app.listen(PORT); //listens on port 3000 -> http://localhost:3000/
 app.use((err, req, res, next) => {
   const defaultErr = {
