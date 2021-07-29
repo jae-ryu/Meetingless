@@ -10,7 +10,7 @@ class Comments extends Component {
     super();
     this.state = {
       topics: [],
-      inputs: [],
+      messages: [],
     };
   }
 
@@ -21,13 +21,24 @@ class Comments extends Component {
       .then(res => res.json())
       .then(result => {
         console.log('made it to fetch gettopics');
-        // console.log(topics);
+        console.log('----------topics result------');
+        console.log(result);
         this.setState({ topics : result });
       })
       .catch(err => console.log('fetch getTopics error'))
       
-    console.log('-----latest state topics below-----');
-    console.log(this.state.topics);
+
+    fetch('/getMessages')
+      .then(res => res.json())
+      .then(result => {
+        console.log('in fetch getMessage');
+        console.log('----------messages result------');
+        console.log(result);
+        // console.log(topics);
+        this.setState({ messages : result });
+      })
+      .catch(err => console.log('fetch getMessage error'))
+
 
     // run getInputs route, to populate this.state.inputs array
     // add it to server and controller
@@ -37,6 +48,8 @@ class Comments extends Component {
     
     console.log('-----latest state topics below-----');
     console.log(this.state.topics);
+    console.log('-----latest state messages below-----');
+    console.log(this.state.messages);
 
     const {topics} = this.state;
 
@@ -50,25 +63,25 @@ class Comments extends Component {
 
     // topics = [ {num, topic, message}]
 
-    const topic1Messages = [];
-    for (let i = 0; i < topics.length; i++) {
-      if (topics[i].num === 1) {
-        topic1Messages = topics[i].message;
-      }
-    }
+    // const topic1Messages = [];
+    // for (let i = 0; i < topics.length; i++) {
+    //   if (topics[i].num === 1) {
+    //     topic1Messages = topics[i].message;
+    //   }
+    // }
 
     // topic1Messages = [{upvote, name, comment}, {}]
 
     // const {message} = topics;
 
-    const messages = topic1Messages.map((el) => {
-      return (
-        <InputHighlight
-          text={el.comment}
-          name={el.name}
-        />
-      )
-    })
+    // const messages = topic1Messages.map((el) => {
+    //   return (
+    //     <InputHighlight
+    //       text={el.comment}
+    //       name={el.name}
+    //     />
+    //   )
+    // })
 
 
     return (
@@ -86,7 +99,7 @@ class Comments extends Component {
           {topic1}
         </div>
         <div id="res">
-          {messages}
+          {/* {messages} */}
         </div>
         <div id="resInput">
           <form method="POST" action='/input' onSubmit={this.props.submitTopic}>
