@@ -9,7 +9,7 @@ class Digest extends Component {
   render () {
     return (
       <section className="digestSection">
-        <h2>Digest</h2>
+        <h2>Presentation</h2>
       </section>
     )
   }

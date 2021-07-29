@@ -60,6 +60,7 @@ class Comments extends Component {
     const firstMessages = messages1.map((el, i) => {
       return (
         <InputHighlight
+          ver = {1}
           text={el.comment}
           name={el.name}
           upvote={el.upvote}
@@ -73,7 +74,7 @@ class Comments extends Component {
 
       <section className="commentSection">
         <div id="circles">
-          <h2>Comments</h2>
+          <h2>Conversation</h2>
         </div>
         <div id="topicInput">
           <form method="POST" action='/topic' onSubmit={this.props.submitTopic}>

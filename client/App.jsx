@@ -64,11 +64,11 @@ class App extends Component {
         </div>
         <div id="trackers">
           <Tracker/>
-          <p>trackers</p>
+          {/* <p>trackers</p> */}
         </div>
         <div id="digests">
           <Digest/>
-          <p>digests</p>
+          {/* <p>digests</p> */}
         </div>
         <div id="comments">
           <Comments topics={this.state.topics} messages1={this.state.messages1} key="comments"/>
