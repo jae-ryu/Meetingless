@@ -58,7 +58,7 @@ topicController.getTopic = (req, res, next) => {
       })
     }
     console.log('made it to getTopic middleware');
-    // console.log(topics);
+    console.log(topics);
     res.locals.topics = topics;
     return next();
   })

@@ -87,7 +87,7 @@ app.get('/getTopics', topicController.getTopic, (req, res) => {
   console.log('made it through getTopic middleware');
   // console.log('----------------------------');
   // console.log(res.locals.topics);
-  res.status(200).sendFile(path.join(__dirname, '../index.html'));
+  res.status(200).json(res.locals.topics);
 })
 
 // app.listen(PORT); //listens on port 3000 -> http://localhost:3000/
