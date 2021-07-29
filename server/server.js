@@ -74,12 +74,19 @@ app.get('/', (req, res) => {
 
 // creating a new topic
 app.post('/topic', topicController.createTopic, (req, res) => {
-  console.log(res.locals.topic);
+  // console.log(res.locals.topic);
   res.status(200).sendFile(path.join(__dirname, '../index.html'));
 })
 
 app.post('/input', topicController.addInput, (req, res) => {
-  console.log('completed add Input middleware');
+  // console.log('completed add Input middleware');
+  res.status(200).sendFile(path.join(__dirname, '../index.html'));
+})
+
+app.get('/getTopics', topicController.getTopic, (req, res) => {
+  console.log('made it through getTopic middleware');
+  // console.log('----------------------------');
+  // console.log(res.locals.topics);
   res.status(200).sendFile(path.join(__dirname, '../index.html'));
 })
 

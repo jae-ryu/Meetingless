@@ -6,8 +6,8 @@ const topicController = {};
 topicController.createTopic = (req, res, next) => {
   const topic = req.body.topic;
   const num = req.body.num;
-  console.log('got into createTopic middleware with req.body = ' + topic);
-  console.log(req.body);
+  // console.log('got into createTopic middleware with req.body = ' + topic);
+  // console.log(req.body);
 
   const newTopic = new TopicModel({
     num : num,
@@ -29,8 +29,8 @@ topicController.createTopic = (req, res, next) => {
 topicController.addInput = (req, res, next) => {
   const {input, name, num} = req.body;
   const newNum = Number(num);
-  console.log('got into addInput middleware with user = ' + name + ' & input = ' + input);
-  console.log(req.body);
+  // console.log('got into addInput middleware with user = ' + name + ' & input = ' + input);
+  // console.log(req.body);
   const inputToAdd = {
     upvote : 0,
     name : name,
@@ -43,11 +43,25 @@ topicController.addInput = (req, res, next) => {
       if (err) {
         console.log(err);
       } else {
-        console.log('successfully found and updated it')
-        console.log (success);
+        // console.log('successfully found and updated it')
+        // console.log (success);
         return next();
       }
     }); 
+}
+
+topicController.getTopic = (req, res, next) => {
+  TopicModel.find({}, 'num topic', (err, topics) => {
+    if (err) {
+      return next ({
+        log: 'error in getTopic middleware'
+      })
+    }
+    console.log('made it to getTopic middleware');
+    // console.log(topics);
+    res.locals.topics = topics;
+    return next();
+  })
 }
 
 module.exports = topicController;
