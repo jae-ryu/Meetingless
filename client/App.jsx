@@ -12,46 +12,42 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
       topics: [],
+      messages1: [],
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    console.log('got to handle change');
-    this.setState({
-      username: '',
-      topics: [... {topic : event.target.value}],
-    })
-    console.log(this.state.topics);
-  }
+  // added this from Comments
+  componentDidMount() {
 
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log('got to handle submit');
-    fetch('/topic', {
-      method: 'post',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({
-        "topic" : "you see me!!",
-        "message" : {}
+    fetch('/getTopics')
+      .then(res => res.json())
+      .then(result => {
+        console.log('made it to fetch gettopics');
+        console.log('----------topics result------');
+        console.log(result);
+        this.setState({ topics : result });
+
+        // sort logic
+        const unsorted = result[0].message;
+        const sorted = unsorted.sort((a,b) => b.upvote - a.upvote);
+
+        this.setState({ messages1 : sorted })
+        // this.setState({ messages1 : result[0].message })
+
       })
-      .then (res => res.json())
-      .then (resJson => {
-        console.log('Got to post fetch request with '+ resJson);
-      })
-      .catch((err) => console.log('error at post topic request ' +err))
-    })
-    // alert('A name was submitted: '+ this.state.username);
+      .catch(err => console.log('fetch getTopics error'))
   }
 
-  onSubmit(e) {
-
-  }
   
   render() {
+    console.log('this state topics ');
+    console.log(this.state.topics);
+    console.log('this state messages1 ');
+    console.log(this.state.messages1);
+
     return (
       <div className="container">
         <div id="name">
@@ -64,8 +60,7 @@ class App extends Component {
           </div>
         </div>
         <div id="topics">
-          <Topics submitTopic={this.handleSubmit} uponChange={this.handleChange} />
-          <p>topics</p>
+          <Topics topics={this.state.topics} messages1={this.state.messages1} key="topics"/>
         </div>
         <div id="trackers">
           <Tracker/>
@@ -76,8 +71,8 @@ class App extends Component {
           <p>digests</p>
         </div>
         <div id="comments">
-          <Comments/>
-          <p>comments</p>
+          <Comments topics={this.state.topics} messages1={this.state.messages1} key="comments"/>
+          {/* <p>comments</p> */}
         </div>
       </div>
     );

@@ -3,8 +3,51 @@
   width: 300px;
 }
 
+.container {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 input[id=nameInput], input[id=verInput] {
   width: 80px;
+}
+
+button {
+  vertical-align: center;
+  // border: 0;
+  display: inline-block;
+  background-color: none;
+  padding: 0;
+}
+
+.inputHighlight, h5 {
+  display: inline-block;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.topicHighlight {
+  background-color: lightseagreen;
+  position: absolute;
+  width: 700px;
+  margin: 0;
+  padding: 0;
+}
+
+.topicHighlight, h4 {
+  margin-top: 0;
+  margin-bottom: 0;
+
+}
+.topicHighlight, h2 {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.inputHighlight {
+  background-color: lightgray;
+  margin: 1px;
+  // position: absolute;
+  width: 600px
 }
 
 // Main App
@@ -72,15 +115,18 @@ input[id=nameInput], input[id=verInput] {
 
 #circles {
   grid-area: circles;
-  background-color: lightcyan;
+  // background-color: lightcyan;
   margin: 2px;
 }
 
 #topicInput {
   grid-area: topic;
-  background-color: lightcyan;
+  // background-color: lightcyan;
   margin: 2px;
+  display: flex;
+  align-items: center;
 }
+
 
 #res {
   grid-area: res;
@@ -94,5 +140,57 @@ input[id=nameInput], input[id=verInput] {
 
 #label {
   grid-area: label;
+  margin: 2px;
+}
+
+// Topics section
+.topicsSection {
+  display: grid;  
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 50px 1fr 1fr 1fr;
+  grid-template-areas: 
+    "title"
+    "firstTopic firstCounter"
+    "secondTopic secondCounter"
+    "thirdTopic thirdCounter";
+    // "label res res res res res"
+    // "label input input input input input";
+  height: 100%;
+  width: auto;
+}
+
+#title {
+  grid-area: title;
+  margin: 2px;
+}
+
+
+#firstTopic {
+  grid-area: firstTopic;
+  margin: 2px;
+}
+
+#secondTopic {
+  grid-area: secondTopic;
+  margin: 2px;
+}
+
+#thirdTopic {
+  grid-area: thirdTopic;
+  margin: 2px;
+}
+
+#firstCounter {
+  grid-area: firstCounter;
+  margin: 2px;
+}
+
+#secondCounter {
+  grid-area: secondCounter;
+  margin: 2px;
+}
+
+#thirdCounter {
+  grid-area: thirdCounter;
   margin: 2px;
 }
