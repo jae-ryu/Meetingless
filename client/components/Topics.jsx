@@ -29,9 +29,12 @@ class Topics extends Component {
 
     return (
       <section className="topicsSection">
-        {/* <div className="title">
+        <div className="title">
           <h2>Topics</h2>
-        </div> */}
+        </div>
+        <div className="title">
+          <h2>Consensus</h2>
+        </div>
         <div className="firstTopic">
           {topic1}
         </div>

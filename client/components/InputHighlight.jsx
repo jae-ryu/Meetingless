@@ -15,8 +15,8 @@ class InputHighlight extends Component {
   }
 
   upvote (ver, text) {
+    this.props.rerenderParentCallback();
     this.setState({upvote : this.state.upvote+1})
-    
     fetch('/upvote', {
       method: "POST",
       headers: {

@@ -12,28 +12,12 @@ class Comments extends Component {
     //   topics: [],
     //   messages1: [],
     // };
+    this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
   }
 
-  // componentDidMount() {
-
-  //   fetch('/getTopics')
-  //     .then(res => res.json())
-  //     .then(result => {
-  //       console.log('made it to fetch gettopics');
-  //       console.log('----------topics result------');
-  //       console.log(result);
-  //       this.setState({ topics : result });
-
-  //       // sort logic
-  //       const unsorted = result[0].message;
-  //       const sorted = unsorted.sort((a,b) => b.upvote - a.upvote);
-
-  //       this.setState({ messages1 : sorted })
-  //       // this.setState({ messages1 : result[0].message })
-
-  //     })
-  //     .catch(err => console.log('fetch getTopics error'))
-  // }
+  rerenderParentCallback() {
+    this.forceUpdate();
+  }
 
   render () {
     
@@ -65,6 +49,7 @@ class Comments extends Component {
           name={el.name}
           upvote={el.upvote}
           key={i}
+          rerenderParentCallback={this.rerenderParentCallback}
         />
       )
     })
@@ -96,7 +81,15 @@ class Comments extends Component {
           </form>
         </div>
         <div id="label">
-
+          <div id="top">
+            <p>What do you need a decision on?</p> 
+          </div>
+          <div id="mid">
+            <p>Group inputs</p> 
+          </div>
+          <div id="low">
+            <p>Add input here</p>
+          </div>
         </div>
       </section>
     )

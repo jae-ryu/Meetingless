@@ -50,7 +50,7 @@ class App extends Component {
 
     return (
       <div className="container">
-        <div id="name">
+        {/* <div id="name">
           <form method="POST" action='/login' onSubmit={this.handleSubmit}>
             <input name="username" type="text" placeholder="name" value={this.state.username} onChange={this.handleChange}></input>
             <input type='submit' value="submit"></input>
@@ -58,7 +58,7 @@ class App extends Component {
           <div className="logged">
             <p>Logged in as {this.state.username}</p>
           </div>
-        </div>
+        </div> */}
         <div id="topics">
           <Topics topics={this.state.topics} messages1={this.state.messages1} key="topics"/>
         </div>

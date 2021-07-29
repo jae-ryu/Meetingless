@@ -28,35 +28,57 @@ button {
 .topicHighlight {
   background-color: lightseagreen;
   position: absolute;
-  width: 700px;
+  width: 600px;
   margin: 0;
   padding: 0;
+  border-radius: 15px;
+  // box-shadow: 5px 10px;
+  --box-shadow-color: gray;
+  box-shadow:  0px 3px 8px var(--box-shadow-color);
 }
 
 .topicHighlight, h4 {
   margin-top: 0;
   margin-bottom: 0;
+  padding-left: 10px;
 
 }
 .topicHighlight, h2 {
   margin-top: 1px;
   margin-bottom: 1px;
+  padding-left: 12px;
+  
+
 }
 
 .inputHighlight {
-  background-color: lightgray;
-  margin: 1px;
+  background-color: rgb(200, 230, 201);
+  // margin: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   // position: absolute;
-  width: 600px
+  width: 550px;
+  padding: 0;
+  border-radius: 12px;
+  --box-shadow-color: lightgray;
+  box-shadow: 0px 8px 24px var(--box-shadow-color);
+}
+
+.inputHighlight, h5 {
+  padding: 0;
+  margin: 0;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 // Main App
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 75px 1fr 3fr;
+  grid-template-rows: 1fr 3fr;
   grid-template-areas: 
-    "name name"
+    // "name name"
     "topics trackers"
     "digests comments"
     "digests comments"
@@ -64,35 +86,28 @@ button {
   height: 90vh;
 }
 
-#name {
-  grid-area: name;
-  background-color: lightgray;
-  text-align: center;
-  margin: 2px;
-  // display: 
-}
 
 #topics { 
   grid-area: topics;
-  background-color: lightblue;
+  background-color: rgb(228, 238, 245);
   margin: 2px;
 }
 
 #trackers {
   grid-area: trackers;
-  background-color: lightgreen;
+  background-color: rgb(228, 238, 245);
   margin: 2px;
 }
 
 #digests {
   grid-area: digests;
-  background-color: lightcoral;
+  background-color: rgb(232, 245, 233);
   margin: 2px;
 }
 
 #comments {
   grid-area: comments;
-  background-color: turquoise;
+  background-color: rgb(232, 245, 233);
   margin: 2px;
 }
 
@@ -100,8 +115,8 @@ button {
 
 .commentSection {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 75px 1fr 3fr 0.5fr;
+  grid-template-columns: 0.7fr 1fr 1fr 1fr;
+  grid-template-rows: 50px 1fr 3fr 1fr;
   grid-template-areas: 
     "circles circles circles circles circles circles"
     "label topic topic topic topic topic"
@@ -136,11 +151,24 @@ button {
 #resInput {
   grid-area: input;
   margin: 2px;
+  display: flex;
+  align-items: center
 }
 
 #label {
   grid-area: label;
-  margin: 2px;
+  margin: 5px;
+  display: flex;
+  text-align: right;
+  flex-direction: column;
+  justify-content: space-between;
+  font-style: italic;
+}
+#label, #low {
+  margin-bottom: 12px;
+}
+#label, #top {
+  margin-top: 7px;
 }
 
 // Topics section
@@ -149,8 +177,8 @@ button {
   grid-template-columns: 3fr 1fr;
   grid-template-rows: 50px 1fr 1fr 1fr;
   grid-template-areas: 
-    "title"
-    "firstTopic firstCounter"
+    "title title title title"
+    "firstTopic firstTopic firstTopic firstCounter"
     "secondTopic secondCounter"
     "thirdTopic thirdCounter";
     // "label res res res res res"
@@ -180,6 +208,12 @@ button {
   margin: 2px;
 }
 
+// .topicsSection, p {}
+
+.firstCounter .secondCounter .thirdCounter {
+  text-align: center;
+}
+
 #firstCounter {
   grid-area: firstCounter;
   margin: 2px;
@@ -193,4 +227,19 @@ button {
 #thirdCounter {
   grid-area: thirdCounter;
   margin: 2px;
+}
+
+// Presentation
+
+.prezi {
+  // grid-area: name;
+  // background-color: lightgray;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  // text-align: center;
+  // vertical-align: center;
+  margin: 2px;
+  margin-top: 40px;
+  // display: 
 }
