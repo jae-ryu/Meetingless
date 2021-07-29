@@ -14,10 +14,17 @@ class App extends Component {
     this.state = {
       topics: [],
       messages1: [],
+      count: 0,
     }
-    // this.handleChange = this.handleChange.bind(this);
+    this.updateCount = this.updateCount.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  updateCount() {
+    this.setState({count : this.state.count+1});
+    this.forceUpdate();
+  }
+
 
   // added this from Comments
   componentDidMount() {
@@ -64,14 +71,14 @@ class App extends Component {
         </div>
         <div id="trackers">
           <Tracker/>
-          {/* <p>trackers</p> */}
+          <p>WIP</p>
         </div>
         <div id="digests">
           <Digest/>
           {/* <p>digests</p> */}
         </div>
         <div id="comments">
-          <Comments topics={this.state.topics} messages1={this.state.messages1} key="comments"/>
+          <Comments topics={this.state.topics} messages1={this.state.messages1} key="comments" updateCount={this.updateCount}/>
           {/* <p>comments</p> */}
         </div>
       </div>

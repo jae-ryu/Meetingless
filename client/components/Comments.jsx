@@ -9,22 +9,20 @@ class Comments extends Component {
   constructor() {
     super();
     // this.state = {
-    //   topics: [],
-    //   messages1: [],
+    //   count: 0,
+    //   // messages1: [],
     // };
-    this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+    // this.updateCount = this.updateCount.bind(this);
   }
 
-  rerenderParentCallback() {
-    this.forceUpdate();
-  }
+  // updateCount() {
+  //   this.setState({count : this.state.count+1});
+  // }
 
   render () {
     
-    console.log('-----latest state topics below-----');
-    console.log(this.props.topics);
-    console.log('-----latest state messages below-----');
-    console.log(this.props.messages1);
+    // console.log('-----latest count-----');
+    // console.log(this.state.count);
 
     const topics = this.props.topics;
 
@@ -49,7 +47,7 @@ class Comments extends Component {
           name={el.name}
           upvote={el.upvote}
           key={i}
-          rerenderParentCallback={this.rerenderParentCallback}
+          updateCount={this.props.updateCount}
         />
       )
     })
